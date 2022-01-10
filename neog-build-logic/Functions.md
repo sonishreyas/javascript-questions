@@ -111,3 +111,116 @@ console.log(`Index of 3 is ${getIndex([5, 2, 6, 7, 3, 4, 5], 3)}`);
 const getIndex = (arr,k) => arr.indexOf(k);
 console.log(`Index of 3 is ${getIndex([5, 2, 6, 7, 3, 4, 5], 3)}`);
 ```
+
+3. Given an array and two numbers, your function should replace all entries of first number in an array with the second number.
+Example:
+Input: replace([1,5,3,5,6,8], 5, 10) ––> Output: [1,10,3,10,6,8]
+```
+const replaceArray = (arr, a, b) => arr.map(item => item === a?b:item);
+console.log(`Replaced Array = ${replaceArray([1, 3, 4, 5, 6, 5], 5, 10)}`);
+```
+
+4. Given two arrays, your function should return single merged array.
+Example:
+Input: mergeArray([1,3,5], [2,4,6]) ––> Output: [1,3,5,2,4,6]
+```
+const mergeArray = (arr1,arr2) => [...arr1 , ...arr2]
+console.log(`Merged Array = ${mergeArray([1,3,5], [2,4,6])}`)
+```
+
+5. Given a string and an index, your function should return the character present at that index in the string.
+Example:
+Input: charAt("neoGcamp", 4) ––> Output: c
+```
+const getChar = (a, i) => a[i];
+console.log(getChar("neoGcamp", 4));
+```
+
+6. Given two dates, your function should return which one comes before the other.
+Example:
+Input: minDate('02/05/2021', '24/01/2021') ––> Output: 24/01/2021
+```
+const minimumDate = (d1, d2) => {
+  let date1 = d1.split("/");
+  let date2 = d2.split("/");
+  if (date1[2] > date2[2]) {
+    return d2;
+  } else if (date1[2] < date2[2]) {
+    return d1;
+  } else {
+    if (date1[1] > date2[1]) {
+      return d2;
+    } else if (date1[1] < date2[1]) {
+      return d1;
+    } else {
+      if (date1[0] > date2[0]) {
+        return d2;
+      } else if (date1[0] < date2[0]) {
+        return d1;
+      } else {
+        return d1;
+      }
+    }
+  }
+};
+console.log(minimumDate("02/05/2021", "24/11/2021"));
+```
+
+## Advanced
+
+1. Write a function which generates a secret code from a given string, by shifting characters of alphabet by N places. Example:
+Input: encodeString("neogcamp", 2) ––> Output: pgqiecor
+Explanation: 2 represents shifting alphabets by 2 places. a –> c, b –> d, c –> e and so on.
+```
+const encodeString = (s, num) => {
+  let charcode = 0;
+  let result = "";
+  for (let i = 0; i < s.length; i++) {
+    charcode = s[i].charCodeAt() + num;
+    result += String.fromCharCode(charcode);
+  }
+  return result;
+};
+console.log(encodeString("neogcamp", 2));
+```
+
+2. Given a sentence, return a sentence with first letter of all words as capital.
+Example:
+Input: toSentenceCase('we are neoGrammers') ––> Output: We Are NeoGrammers
+```
+const toSentenceCase = (str) => str.split(" ").map((item) => item[0].toUpperCase() + item.slice(1));
+console.log(toSentenceCase("we are neoGrammers"));
+```
+
+3. Given an array of numbers, your function should return an array in the ascending order.
+Example:
+Input: sortArray([100,83,32,9,45,61]) ––> Output: [9,32,45,61,83,100]
+```
+const sortArray = (arr) => console.log(arr.sort().reverse());
+console.log(sortArray([100, 83, 32, 9, 45, 61]));
+```
+- Another Approach
+```
+const sortArray = (arr) => console.log(arr.sort((a,b)=>a-b));
+console.log(sortArray([100, 83, 32, 9, 45, 61]));
+```
+
+4. Given a sentence, your function should reverse the order of characters in each word, keeping same sequence of words.
+Example:
+Input: reverseCharactersOfWord('we are neoGrammers') –––> Output: ew era sremmarGoen
+```
+const reverseCharactersOfWord = (s) =>
+  s.split(" ").map((item) => {
+    let res = "";
+    for (let i = item.length - 1; i >= 0; i--) {
+      res += item[i];
+    }
+    return res;
+  });
+console.log(reverseCharactersOfWord("we are neoGrammers"));
+```
+- Optimize Approach
+```
+const reverseCharactersOfWord = (s) => s.split(" ").map((item) => item.split("").reverse().join(""));
+console.log(reverseCharactersOfWord("we are neoGrammers"));
+```
